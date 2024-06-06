@@ -779,7 +779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4350393145673796008}
   m_Layer: 0
-  m_Name: Game Background
+  m_Name: Old Game BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

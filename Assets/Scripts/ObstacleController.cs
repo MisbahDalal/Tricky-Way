@@ -8,10 +8,11 @@ public class ObstacleController : MonoBehaviour
     private Vector3 initialMousePosition;
     private Vector3 initialSpritePosition;
 
-    private Quaternion initialObstacleRotation;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
     void Start()
     {
-        StoreInitialRotations();
+        GetInitialRotations();
     }
 
     void Update()
@@ -45,15 +46,22 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    private void StoreInitialRotations()
+    private void GetInitialRotations()
     {
-        initialObstacleRotation = transform.rotation;
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     // Reset obstacles to their initial positions
-    public void ResetObstacles()
+    //public void ResetObstacles()
+    //{
+    //    Debug.Log("Reset Obstacles called");
+    //    transform.rotation = initialObstacleRotation;
+    //}
+
+    public void ResetObstacle()
     {
-        Debug.Log("Reset Obstacles called");
-        transform.rotation = initialObstacleRotation;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
     }
 }
