@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int ballLives;
     public TextMeshProUGUI ballLivesText;
 
-    public float levelTime = 60f; // Total time for the level
+    public float levelTime = 30f; // Total time for the level
     private float currentTime;
 
     public Image timerBar;
