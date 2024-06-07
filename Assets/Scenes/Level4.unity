@@ -629,7 +629,7 @@ PrefabInstance:
     - target: {fileID: 7526926934699491215, guid: da859f523a1b94349badceb49a117bfa, type: 3}
       propertyPath: ball_3
       value: 
-      objectReference: {fileID: 924635450}
+      objectReference: {fileID: 924635453}
     - target: {fileID: 7526926934699491215, guid: da859f523a1b94349badceb49a117bfa, type: 3}
       propertyPath: timerBar
       value: 
@@ -779,6 +779,11 @@ GameObject:
 --- !u!1 &924635452 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8245420109521368674, guid: f00db22d7431a1442b363cefe57fcdc0, type: 3}
+  m_PrefabInstance: {fileID: 924635449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &924635453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5695504378959336525, guid: f00db22d7431a1442b363cefe57fcdc0, type: 3}
   m_PrefabInstance: {fileID: 924635449}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1127579852
