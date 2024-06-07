@@ -17,11 +17,13 @@ public class GameManage : MonoBehaviour
     public GameObject ball_2;
     public GameObject ball_1;
     public GameObject ball_0;
+    public TextMeshProUGUI levelText;
 
     private ObstacleController[] obstacles;
 
     private void Start()
     {
+        levelText.text = "Puzzle " + (SceneManager.GetActiveScene().buildIndex + 1).ToString();
         ball_3.SetActive(true);
         obstacles = FindObjectsOfType<ObstacleController>();
         timeRemaining = levelTime;
