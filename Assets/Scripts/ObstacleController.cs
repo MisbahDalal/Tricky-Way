@@ -4,45 +4,40 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    private bool isDragging = false;
-    private Vector3 initialMousePosition;
-    private Vector3 initialSpritePosition;
+    private Camera myCam;
+    private Vector3 screenPos;
+    private float angleOffset;
+    private Collider2D col;
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     void Start()
     {
+        myCam = Camera.main;
+        col = GetComponent<Collider2D>();
         GetInitialRotations();
     }
 
-    void Update()
+    private void Update()
     {
-        // Check for mouse input
+        Vector3 mousePos = myCam.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0))
         {
-            // Get initial positions when the mouse button is pressed
-            initialMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            initialSpritePosition = transform.position;
-
-            // Check if the mouse is over the sprite
-            RaycastHit2D hit = Physics2D.Raycast(initialMousePosition, Vector2.zero);
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            if (col == Physics2D.OverlapPoint(mousePos))
             {
-                isDragging = true;
+                screenPos = myCam.WorldToScreenPoint(transform.position);
+                Vector3 vec3 = Input.mousePosition - screenPos;
+                angleOffset = (Mathf.Atan2(transform.right.y, transform.right.x) - Mathf.Atan2(vec3.y, vec3.x)) * Mathf.Rad2Deg;
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0))
         {
-            isDragging = false;
-        }
-
-        // Rotate the sprite based on mouse movement
-        if (isDragging)
-        {
-            Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 direction = currentMousePosition - initialSpritePosition;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            if (col == Physics2D.OverlapPoint(mousePos))
+            {
+                Vector3 vec3 = Input.mousePosition - screenPos;
+                float angle = Mathf.Atan2(vec3.y, vec3.x) * Mathf.Rad2Deg;
+                transform.eulerAngles = new Vector3(0, 0, angle + angleOffset);
+            }
         }
     }
 
