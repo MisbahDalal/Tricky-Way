@@ -18,12 +18,13 @@ public class GameManage : MonoBehaviour
     public GameObject ball_1;
     public GameObject ball_0;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI levelFailedText;
 
     private ObstacleController[] obstacles;
 
     private void Start()
     {
-        levelText.text = "Puzzle " + (SceneManager.GetActiveScene().buildIndex + 1).ToString();
+        levelText.text = "Puzzle " + (SceneManager.GetActiveScene().buildIndex).ToString();
         ball_3.SetActive(true);
         obstacles = FindObjectsOfType<ObstacleController>();
         timeRemaining = levelTime;
@@ -80,6 +81,7 @@ public class GameManage : MonoBehaviour
 
     public void LevelFailed()
     {
+        levelFailedText.text = "Puzzle " + (SceneManager.GetActiveScene().buildIndex).ToString();
         isLevelComplete = true;
         //HideGameObjects();
         levelFailedPopup.SetActive(true);

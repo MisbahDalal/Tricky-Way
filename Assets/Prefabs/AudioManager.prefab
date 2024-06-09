@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 5732719556243786126}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,8 +177,10 @@ MonoBehaviour:
   musicSource: {fileID: 7643436059502447176}
   SFXSource: {fileID: 4191052564271544496}
   backgroundMusic: {fileID: 8300000, guid: aac7cef1916c347b8849593e8473e54f, type: 3}
+  death: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
   wallTouch: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   goal: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  levelComplete: {fileID: 8300000, guid: adbbce501b4280b47bff38ceabeef82e, type: 3}
 --- !u!1 &8083760014394275210
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
