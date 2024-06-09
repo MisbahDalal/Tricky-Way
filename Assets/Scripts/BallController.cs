@@ -11,6 +11,9 @@ public class BallController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite frownBall;
     private Sprite happyBall;
+    private float initialGravity;
+    private Vector2 initialVelocity;
+    private float initialAngularVelocity;
 
     AudioManager audioManager;
 
@@ -21,6 +24,7 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
+        getInitialVelocity();
         spriteRenderer = GetComponent<SpriteRenderer>();
         happyBall = spriteRenderer.sprite;
         StoreInitialPosition();
@@ -36,13 +40,12 @@ public class BallController : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.death);
             spriteRenderer.sprite = frownBall;
+            stopBall();
             gameManage.LoseLife();
         }
         else if (collision.gameObject.CompareTag("Goal"))
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            GetComponent<Rigidbody2D>().angularVelocity = 0f;
-            GetComponent<Rigidbody2D>().gravityScale = 0;
+            stopBall();
             audioManager.PlaySFX(audioManager.goal);
             audioManager.PlaySFX(audioManager.levelComplete);
             gameManage.LevelComplete();
@@ -57,7 +60,28 @@ public class BallController : MonoBehaviour
         Debug.Log("Reset Ball called");
         spriteRenderer.sprite = happyBall;
         transform.position = initialPosition;
+        setInitialVelocity();
+    }
+
+    public void stopBall()
+    {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+    }
+
+    public void getInitialVelocity()
+    {
+        initialGravity = GetComponent<Rigidbody2D>().gravityScale;
+        initialVelocity = GetComponent<Rigidbody2D>().velocity;
+        initialAngularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
+    }
+
+    public void setInitialVelocity()
+    {
+        GetComponent<Rigidbody2D>().velocity = initialVelocity;
+        GetComponent<Rigidbody2D>().angularVelocity = initialAngularVelocity;
+        GetComponent<Rigidbody2D>().gravityScale = initialGravity;
     }
 
 }

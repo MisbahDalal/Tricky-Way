@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManage : MonoBehaviour
 {
     public int ballLives = 3;
-    public float levelTime = 30f;
+    public float levelTime;
     public Image timerBar;
     //public TextMeshProUGUI livesText;
     public GameObject levelCompletePopup;
@@ -47,22 +47,11 @@ public class GameManage : MonoBehaviour
     public void LoseLife()
     {
         ballLives--;
-        ball_3.SetActive(false);
-        ball_2.SetActive(false);
-        ball_1.SetActive(false);
-        ball_0.SetActive(false);
+        
         if (ballLives > 0)
         {
             FindObjectOfType<BallController>().ResetBall();
             ResetObstacles();
-            if (ballLives == 2)
-            {
-                ball_2.SetActive(true);
-            }
-            else if (ballLives == 1)
-            {
-                ball_1.SetActive(true);
-            }
         }
         else
         {
@@ -102,6 +91,27 @@ public class GameManage : MonoBehaviour
     {
         timerBar.fillAmount = Mathf.Clamp01(timeRemaining / levelTime);
         //livesText.text = "Lives: " + ballLives.ToString();
+        ball_3.SetActive(false);
+        ball_2.SetActive(false);
+        ball_1.SetActive(false);
+        ball_0.SetActive(false);
+        if (ballLives == 3)
+        {
+            ball_3.SetActive(true);
+        }
+        else if (ballLives == 2)
+        {
+            ball_2.SetActive(true);
+        }
+        else if (ballLives == 1)
+        {
+            ball_1.SetActive(true);
+        }
+        else
+        {
+            ball_0.SetActive(true);
+        }
+
     }
 
     private void ResetObstacles()
