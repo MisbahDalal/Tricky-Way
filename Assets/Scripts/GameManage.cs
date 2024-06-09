@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,8 +51,7 @@ public class GameManage : MonoBehaviour
         
         if (ballLives > 0)
         {
-            FindObjectOfType<BallController>().ResetBall();
-            ResetObstacles();
+            StartCoroutine(RespawnBallAfterDelay(1f));
         }
         else
         {
@@ -59,6 +59,13 @@ public class GameManage : MonoBehaviour
             ball_0.SetActive(true);
         }
         UpdateUI();
+    }
+
+    private IEnumerator RespawnBallAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        FindObjectOfType<BallController>().ResetBall();
+        ResetObstacles();
     }
 
     public void LevelComplete()
